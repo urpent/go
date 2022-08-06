@@ -1,5 +1,5 @@
-// Package logs is a simple logging lib that shows calling func line, info and provide context for tracing.
-package logs
+// Package logx is a simple logging lib that shows calling func line, info and provide context for tracing.
+package logx
 
 import (
 	"context"
@@ -30,9 +30,9 @@ type Field struct {
 }
 
 // Info will log and return first parameter p
-// Example 1: logs.Info(err)
-// Example 2 with extra request info: logs.Error(err, logs.Field{Name: "myRequest", Data: req})
-// Example 3: logs.Info(errx.Wrap(errs.ErrUnauthorized, errs.ErrUserNotFound, err), logs.Field{"myRequest", req})
+// Example 1: logx.Info(err)
+// Example 2 with extra request info: logx.Error(err, logx.Field{Name: "myRequest", Data: req})
+// Example 3: logx.Info(errx.Wrap(errs.ErrUnauthorized, errs.ErrUserNotFound, err), logx.Field{"myRequest", req})
 func Info[T any](p T, extraInfos ...any) T {
 	for _, lg := range externalLoggers {
 		logF(lg.Info, p, extraInfos...)
@@ -42,7 +42,7 @@ func Info[T any](p T, extraInfos ...any) T {
 }
 
 // Warn will log and return first parameter p
-// Example: logs.Warn(errx.Wrap(errs.ErrUnauthorized, errs.ErrUserNotFound, err), logs.Field{"myRequest", req})
+// Example: logx.Warn(errx.Wrap(errs.ErrUnauthorized, errs.ErrUserNotFound, err), logx.Field{"myRequest", req})
 func Warn[T any](p T, extraInfos ...any) T {
 	for _, lg := range externalLoggers {
 		logF(lg.Warn, p, extraInfos...)
@@ -52,9 +52,9 @@ func Warn[T any](p T, extraInfos ...any) T {
 }
 
 // Error will log and return first parameter p1
-// Example 1: logs.Error(err)
-// Example 2 with extra request info: logs.Error(err, logs.Field{"myRequest", Data: req})
-// Example 3: logs.Error(errx.Wrap(errs.ErrUnauthorized, errs.ErrUserNotFound, err))
+// Example 1: logx.Error(err)
+// Example 2 with extra request info: logx.Error(err, logx.Field{"myRequest", Data: req})
+// Example 3: logx.Error(errx.Wrap(errs.ErrUnauthorized, errs.ErrUserNotFound, err))
 func Error[T any](p T, extraInfos ...any) T {
 	for _, lg := range externalLoggers {
 		logF(lg.Error, p, extraInfos...)

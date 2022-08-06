@@ -1,4 +1,4 @@
-module github.com/urpent/go/logs
+module github.com/urpent/go/logx
 
 go 1.18
 

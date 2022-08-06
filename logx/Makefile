@@ -11,7 +11,7 @@ test:
 .PHONY: unit-test
 unit-test:
 	go install gotest.tools/gotestsum@latest
-	gotestsum --jsonfile ${REPORT_DIR}/logs_report.json -- -coverprofile=${REPORT_DIR}/logs_coverage.out -race -v ./...
+	gotestsum --jsonfile ${REPORT_DIR}/logx_report.json -- -coverprofile=${REPORT_DIR}/logx_coverage.out -race -v ./...
 
 
 .PHONY: staticcheck
