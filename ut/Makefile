@@ -1,4 +1,4 @@
-REPORT_DIR ?= ../..
+REPORT_DIR ?= ..
 
 .PHONY: test
 test:

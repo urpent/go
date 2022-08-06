@@ -2,8 +2,9 @@
 
 Go library
 
-- `ut` - helpers for unit testing
-- `arrayx` - helpers for array comparison
+- `ut` - unit testing
+- `errx` - wrap error
+- `arrayx` - array comparison
 
 ## Versioning:
 - We use [Semantic Versioning](https://semver.org/). For example, if the current version is `ut/v1.0.0`:
