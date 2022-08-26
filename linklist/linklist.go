@@ -73,7 +73,6 @@ func (l *DoublyLinkedList[T]) MoveNodeToFront(node *Node[T]) {
 	l.head.prev = node
 	node.next = l.head
 	l.head = node
-	return
 }
 
 func (l *DoublyLinkedList[T]) Remove(node *Node[T]) {
@@ -110,8 +109,6 @@ func (l *DoublyLinkedList[T]) Remove(node *Node[T]) {
 	// Node in the middle of the list
 	node.prev.next = node.next
 	node.next.prev = node.prev
-
-	return
 }
 
 func (l *DoublyLinkedList[T]) RemoveLast() (removedNode *Node[T]) {
