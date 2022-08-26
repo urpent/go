@@ -18,12 +18,12 @@ func Test_LRUCache(t *testing.T) {
 		result, _ := cache.Get(1)
 		ut.AssertEqual(t, 1, result) // ok return 1
 		cache.Set(3, 3)              // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
-		result, ok := cache.Get(2)   // 2 not found
+		_, ok := cache.Get(2)        // 2 not found
 		ut.AssertEqual(t, false, ok)
 		ut.AssertEqual(t, len(cache.cacheMap), 2)
 
 		cache.Set(4, 4) // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
-		result, ok = cache.Get(1)
+		_, ok = cache.Get(1)
 		ut.AssertEqual(t, false, ok)
 
 		result, _ = cache.Get(3)

@@ -43,8 +43,6 @@ func (c *lruCache[K, V]) Set(key K, value V) {
 		node := c.linkedList.RemoveLast()
 		delete(c.cacheMap, node.Data.Key)
 	}
-
-	return
 }
 
 func (c *lruCache[K, V]) Get(key K) (value V, ok bool) {
