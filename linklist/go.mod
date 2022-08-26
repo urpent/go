@@ -1,4 +1,4 @@
-module github.com/urpent/linklist
+module github.com/urpent/go/linklist
 
 go 1.18
 
