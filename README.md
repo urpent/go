@@ -7,6 +7,7 @@ Go library
 - `logx` - logging
 - `errx` - wrap error
 - `listx` - slice comparison
+- `cachex` - cache
 
 ## Versioning:
 - [Semantic Versioning](https://semver.org/). For example, if the current version is `errx/v1.0.0`:
