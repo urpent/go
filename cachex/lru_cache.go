@@ -11,21 +11,21 @@ type keyValuePair[K, V any] struct {
 	Value V
 }
 
-// lruCache is Least Recently Used (LRU) cache.
-type lruCache[K, V any] struct {
+// LRUCache is Least Recently Used (LRU) cache.
+type LRUCache[K, V any] struct {
 	cacheMap   map[any]*linklist.Node[keyValuePair[K, V]]
 	mux        sync.Mutex
 	linkedList linklist.DoublyLinkedList[keyValuePair[K, V]]
 	capacity   int
 }
 
-func NewLRUCache[K, V any](capacity int) lruCache[K, V] {
-	return lruCache[K, V]{capacity: capacity,
+func NewLRUCache[K, V any](capacity int) LRUCache[K, V] {
+	return LRUCache[K, V]{capacity: capacity,
 		cacheMap: make(map[any]*linklist.Node[keyValuePair[K, V]], capacity+1),
 	}
 }
 
-func (c *lruCache[K, V]) Set(key K, value V) {
+func (c *LRUCache[K, V]) Set(key K, value V) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
@@ -45,7 +45,7 @@ func (c *lruCache[K, V]) Set(key K, value V) {
 	}
 }
 
-func (c *lruCache[K, V]) Get(key K) (value V, ok bool) {
+func (c *LRUCache[K, V]) Get(key K) (value V, ok bool) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
