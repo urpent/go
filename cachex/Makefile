@@ -25,3 +25,9 @@ staticcheck:
 gosec:
 	go install github.com/securego/gosec/v2/cmd/gosec@latest
 	gosec -fmt=text ./...
+
+
+.PHONY: mock
+mock:
+	go install github.com/vektra/mockery/v2@latest
+	mockery --name=Cacher --filename=cacher_mock.go --structname=CacherMock --inpackage

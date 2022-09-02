@@ -19,8 +19,9 @@ type LRUCache[K, V any] struct {
 	capacity   int
 }
 
-func NewLRUCache[K, V any](capacity int) LRUCache[K, V] {
-	return LRUCache[K, V]{capacity: capacity,
+func NewLRUCache[K, V any](capacity int) *LRUCache[K, V] {
+	return &LRUCache[K, V]{
+		capacity: capacity,
 		cacheMap: make(map[any]*linklist.Node[keyValuePair[K, V]], capacity+1),
 	}
 }
@@ -58,4 +59,33 @@ func (c *LRUCache[K, V]) Get(key K) (value V, ok bool) {
 	c.linkedList.MoveNodeToFront(item)
 
 	return item.Data.Value, true
+}
+
+func (c *LRUCache[K, V]) Delete(key K) {
+	c.mux.Lock()
+	defer c.mux.Unlock()
+
+	item, ok := c.cacheMap[key]
+	if !ok {
+		return
+	}
+
+	c.linkedList.Remove(item)
+	delete(c.cacheMap, key)
+}
+
+func (c *LRUCache[K, V]) Clear() {
+	cacheMap := make(map[any]*linklist.Node[keyValuePair[K, V]], c.capacity+1)
+	linkedList := linklist.NewDoublyLinkedList[keyValuePair[K, V]]()
+
+	c.mux.Lock()
+	c.cacheMap = cacheMap
+	c.linkedList = linkedList
+	c.mux.Unlock()
+}
+
+func (c *LRUCache[K, V]) Len() int {
+	c.mux.Lock()
+	defer c.mux.Unlock()
+	return len(c.cacheMap)
 }
