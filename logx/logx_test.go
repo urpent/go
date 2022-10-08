@@ -90,3 +90,10 @@ func TestString(t *testing.T) {
 		ut.AssertEqual(t, "{\n \"ID\": \"abc\"\n}", result)
 	})
 }
+
+func TestF(t *testing.T) {
+	t.Run("Test Simple String", func(t *testing.T) {
+		result := F("abc", "efg")
+		ut.AssertEqual(t, Field{Name: "abc", Data: "efg"}, result)
+	})
+}
