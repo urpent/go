@@ -7,7 +7,10 @@ Go library
 - `logx` - logging
 - `errx` - wrap error
 - `listx` - slice comparison
+- `linklist` - linklist
 - `cachex` - cache
+- `api` - api response helper
+- `httpx` - http client
 
 ## Versioning:
 - [Semantic Versioning](https://semver.org/). For example, if the current version is `errx/v1.0.0`:
