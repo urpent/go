@@ -20,7 +20,7 @@ Go library
     - not backward compatible, use `v2.0.0`
 
 ### Create Tag
-- To create a new version: `git tag -a v0.0.0`
+- To create a new version: `git tag v0.0.0`
 - To push a new version: `git push origin v0.0.0`
 - To delete tag (in case if mistakenly created): `git tag -d v0.0.0` and `git push --delete origin v0.0.0`
 
