@@ -5,18 +5,34 @@ import (
 	"math/big"
 )
 
-const alphaNumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-"
+type Combination string
 
-// GenerateSecureCode generates random 15 digit alphanumeric code with crypto/rand
-func GenerateSecureCode(codeLength int) string {
+const CombinationDefault Combination = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-"
+
+// Secure generates random code with crypto/rand
+func Secure(codeLength int) (string, error) {
 	ret := make([]byte, codeLength)
 	for i := 0; i < codeLength; i++ {
-		num, err := rand.Int(rand.Reader, big.NewInt(int64(len(alphaNumeric))))
+		num, err := rand.Int(rand.Reader, big.NewInt(int64(len(CombinationDefault))))
 		if err != nil {
-			panic("GenerateSecureCode " + err.Error()) // return "", err
+			return "", err
 		}
-		ret[i] = alphaNumeric[num.Int64()]
+		ret[i] = CombinationDefault[num.Int64()]
 	}
 
-	return string(ret)
+	return string(ret), nil
+}
+
+// CustomSecure generates random code with crypto/rand and custom combination
+func CustomSecure(codeLength int, combination Combination) (string, error) {
+	ret := make([]byte, codeLength)
+	for i := 0; i < codeLength; i++ {
+		num, err := rand.Int(rand.Reader, big.NewInt(int64(len(combination))))
+		if err != nil {
+			return "", err
+		}
+		ret[i] = combination[num.Int64()]
+	}
+
+	return string(ret), nil
 }
