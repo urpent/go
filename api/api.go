@@ -14,5 +14,5 @@ func Json[T any](w io.Writer, statusCode int, data T) {
 	json.NewEncoder(w).Encode(resp[T]{
 		StatusCode: statusCode,
 		Data:       data,
-	})
+	}) //#nosec
 }
