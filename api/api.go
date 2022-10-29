@@ -2,7 +2,7 @@ package api
 
 import (
 	"encoding/json"
-	"io"
+	"net/http"
 )
 
 type resp[T any] struct {
@@ -10,7 +10,8 @@ type resp[T any] struct {
 	Data       T   `json:"data,omitempty"`
 }
 
-func Json[T any](w io.Writer, statusCode int, data T) {
+func Json[T any](w http.ResponseWriter, statusCode int, data T) {
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resp[T]{
 		StatusCode: statusCode,
 		Data:       data,
