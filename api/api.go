@@ -31,10 +31,11 @@ type List[T any] struct {
 	List   []T  `json:"list"`
 }
 
-func Json[T any](w http.ResponseWriter, status Status, data T) {
+func Json[T any](w http.ResponseWriter, status Status, message string, data T) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(Response[T]{
-		Status: status,
-		Data:   data,
+		Status:  status,
+		Message: message,
+		Data:    data,
 	}) //#nosec
 }
