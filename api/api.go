@@ -10,6 +10,10 @@ type Resp[T any] struct {
 	Data       T   `json:"data,omitempty"`
 }
 
+type RespList[T any] struct {
+	Resp[List[T]]
+}
+
 type List[T any] struct {
 	Total  int  `json:"total"`
 	Limit  *int `json:"limit,omitempty"`
