@@ -1,3 +1,4 @@
 *_coverage.out
 *_report.json
 .DS_Store
+/go_coverage.html
