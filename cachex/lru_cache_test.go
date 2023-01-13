@@ -34,6 +34,10 @@ func Test_LRUCache(t *testing.T) {
 		result, _ = cache.Get(4)
 		ut.AssertEqual(t, 4, result)
 
+		cache.Set(4, 40)
+		result, _ = cache.Get(4)
+		ut.AssertEqual(t, 40, result)
+
 		ut.AssertEqual(t, len(cache.cacheMap), 2)
 		ut.AssertEqual(t, cache.linkedList.Len(), 2)
 	})

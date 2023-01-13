@@ -35,6 +35,10 @@ func Test_LRUCacheExpiry(t *testing.T) {
 		result, _ = cache.Get(4)
 		ut.AssertEqual(t, 4, result)
 
+		cache.Set(4, 40)
+		result, _ = cache.Get(4)
+		ut.AssertEqual(t, 40, result)
+
 		ut.AssertEqual(t, len(cache.cacheMap), 2)
 		ut.AssertEqual(t, cache.linkedList.Len(), 2)
 	})
@@ -52,5 +56,10 @@ func Test_LRUCacheExpiry_Expired(t *testing.T) {
 		time.Sleep(30 * time.Millisecond)
 		_, ok := cache.Get(2)
 		ut.AssertEqual(t, false, ok) // 2 is expired and should not be found
+
+		cache.Set(2, 20)
+		result, ok = cache.Get(2)
+		ut.AssertEqual(t, 20, result)
+		ut.AssertEqual(t, true, ok)
 	})
 }

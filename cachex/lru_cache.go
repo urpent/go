@@ -32,6 +32,7 @@ func (c *LRUCache[K, V]) Set(key K, value V) {
 
 	item, existed := c.cacheMap[key]
 	if existed {
+		item.Data.Value = value
 		c.linkedList.MoveNodeToFront(item)
 		return
 	}

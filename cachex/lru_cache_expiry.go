@@ -37,6 +37,8 @@ func (c *LRUCacheExpiry[K, V]) Set(key K, value V) {
 
 	item, existed := c.cacheMap[key]
 	if existed {
+		item.Data.Value.Value = value
+		item.Data.Value.KeyExpiry = time.Now().Add(c.maxTimeToLive)
 		c.linkedList.MoveNodeToFront(item)
 		return
 	}
