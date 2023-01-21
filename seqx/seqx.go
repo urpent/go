@@ -1,4 +1,4 @@
-package seq
+package seqx
 
 import "strings"
 
