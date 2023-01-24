@@ -377,3 +377,28 @@ func TestContains_MultipleComparator(t *testing.T) {
 		})
 	}
 }
+
+func TestFilter(t *testing.T) {
+	tests := []struct {
+		name       string
+		array      []string
+		filterFunc func(string) bool
+		wantResult []string
+	}{
+		{
+			name:  "Ok,",
+			array: []string{"5", "1", "2", "5", "3", "3", "4", "X"},
+			filterFunc: func(s string) bool {
+				return s != "X"
+			},
+			wantResult: []string{"5", "1", "2", "5", "3", "3", "4"},
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			result := Filter(tc.array, tc.filterFunc)
+			ut.AssertEqual(t, tc.wantResult, result)
+		})
+	}
+}

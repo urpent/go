@@ -93,6 +93,16 @@ func Contains[T comparable](s []T, x T, optionalComparator ...func(T, T) bool) b
 	return false
 }
 
+func Filter[T comparable](s []T, filterFunc func(T) bool) []T {
+	newList := make([]T, 0, 5)
+	for _, elem := range s {
+		if filterFunc(elem) {
+			newList = append(newList, elem)
+		}
+	}
+	return newList
+}
+
 func isAllComparatorOk[T any](a, b T, comparator ...func(T, T) bool) bool {
 	for _, c := range comparator {
 		if c == nil || !c(a, b) {
