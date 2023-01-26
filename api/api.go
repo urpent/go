@@ -12,6 +12,7 @@ const (
 	StatusNotFound     = "NOT_FOUND"
 	StatusBadRequest   = "BAD_REQUEST"
 	StatusUnauthorized = "UNAUTHORIZED"
+	StatusForbidden    = "FORBIDDEN"
 	StatusServerError  = "SERVER_ERROR"
 )
 
