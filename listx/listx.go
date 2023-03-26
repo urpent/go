@@ -93,7 +93,7 @@ func Contains[T comparable](s []T, x T, optionalComparator ...func(T, T) bool) b
 	return false
 }
 
-func Filter[T comparable](s []T, filterFunc func(T) bool) []T {
+func Filter[T any](s []T, filterFunc func(T) bool) []T {
 	newList := make([]T, 0, 5)
 	for _, elem := range s {
 		if filterFunc(elem) {
